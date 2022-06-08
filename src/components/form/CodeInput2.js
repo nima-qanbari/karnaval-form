@@ -1,23 +1,35 @@
 import React from "react";
 
-const CodeInput2 = ({ value, setValue  }) => {
+import FormHelperText from '@material-ui/core/FormHelperText';
+
+const CodeInput2 = ({ value, onChange, error, helperText }) => {
+  const valueArray = [...new Array(5)].map((_, idx) =>
+    value[idx] ? value[idx] : ""
+  );
+
+  console.log(valueArray);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
-    setValue([...value.map((d, idx) => (idx === index ? element.value : d))]);
+    onChange(
+      [...valueArray.map((element, idx) => (idx === index ? element.value : element))].join(
+        ""
+      )
+    );
+
     //Focus next input
     if (element.nextSibling && element.value !== "") {
       element.nextSibling.focus();
     }
 
     if (element.previousSibling && element.value === "") {
-        element.previousSibling.focus()
+      element.previousSibling.focus();
     }
   };
 
   return (
     <div dir="ltr">
-      {value.map((data, index) => {
+      {valueArray.map((data, index) => {
         return (
           <input
             style={{
@@ -39,7 +51,10 @@ const CodeInput2 = ({ value, setValue  }) => {
             onFocus={(e) => e.target.select()}
           />
         );
-      })} 
+      })}
+      {Boolean(helperText) ? <FormHelperText error={error}>
+        {helperText}
+      </FormHelperText> : null }
     </div>
   );
 };

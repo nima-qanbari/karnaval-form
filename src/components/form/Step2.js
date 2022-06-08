@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
 const number = /^[0-9]*$/;
 
 const Step2 = ({ onSubmit }) => {
-  const [codeValue, setCodeValue] = useState(new Array(5).fill(""));
-  console.log(codeValue.join(""));
+  const [codeValue, setCodeValue] = useState("");
+  console.log(codeValue);
   const [error, setError] = useState(null);
   const classes = useStyles();
 
@@ -40,7 +40,11 @@ const Step2 = ({ onSubmit }) => {
       setError("کد را وارد کنید!");
     } else if (!number.test(codeValue)) {
       setError("کد نامعتبر است!");
-    } else {
+    }
+    else if(codeValue.length !== 5) {
+      setError("کد نامعتبر است!") 
+    } 
+    else {
       setError(null);
       onSubmit(codeValue);
     }
@@ -50,7 +54,7 @@ const Step2 = ({ onSubmit }) => {
     <div>
       <CountDownTimer />
       <form className={classes.form} onSubmit={clickHandler}>
-        <CodeInput2 value={codeValue} setValue={setCodeValue} />
+        <CodeInput2 value={codeValue} onChange ={setCodeValue} error={error} helperText={error}/>
         <Button
           type="submit"
           className={classes.btn}
