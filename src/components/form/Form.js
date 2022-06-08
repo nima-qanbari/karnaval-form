@@ -38,7 +38,7 @@ const Form = ({onSubmit1, onSubmit2, onTimeOut}) => {
     } catch (error) {
       setError(error.message)
     }finally{
-
+      setLoading(false)
     }
 
   }
