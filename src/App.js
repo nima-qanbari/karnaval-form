@@ -1,10 +1,11 @@
 import './App.css';
-import Form from './components/form/Form';
+
+import ApiConnector from "./ApiConnector/ApiConnector"
 
 function App() {
   return (
     <div className='container'>
-      <Form />
+      <ApiConnector/>
     </div>
   );
 }

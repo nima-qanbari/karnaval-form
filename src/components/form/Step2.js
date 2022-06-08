@@ -24,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
 
 const number = /^[0-9]*$/;
 
-const Step2 = ({ onSubmit }) => {
+const Step2 = ({ onSubmit, onTimeOut, error: propErrors, loading }) => {
   const [codeValue, setCodeValue] = useState("");
+
   const [error, setError] = useState(null);
   const classes = useStyles();
 
@@ -51,14 +52,15 @@ const Step2 = ({ onSubmit }) => {
 
   return (
     <div>
-      <CountDownTimer />
+      <CountDownTimer onTimeOut={onTimeOut}/>
       <form className={classes.form} onSubmit={clickHandler}>
-        <CodeInput2 value={codeValue} onChange ={setCodeValue} error={error} helperText={error}/>
+        <CodeInput2 value={codeValue} onChange ={setCodeValue} error={error || propErrors}  helperText={error || propErrors }/>
         <Button
           type="submit"
           className={classes.btn}
           color="primary"
           variant="contained"
+          disabled={loading}
         >
           ورود
         </Button>

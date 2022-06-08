@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const regexNumber = /^(09|\+989|9)[0-9]{9}$/;
 const number = /^[0-9]*$/;
 
-const Step1 = ({ onSubmit }) => {
+const Step1 = ({ onSubmit, error: propErrors , loading}) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(null);
 
@@ -49,8 +49,8 @@ const Step1 = ({ onSubmit }) => {
         <TextField
           name="mobile"
           autoFocus
-          error={Boolean(error)}
-          helperText={error}
+          error={Boolean(error) || Boolean(propErrors)}
+          helperText={error || propErrors}
           value={value}
           onChange={onchangeHandler}
           variant="outlined"
@@ -63,6 +63,7 @@ const Step1 = ({ onSubmit }) => {
           className={classes.btn}
           color="primary"
           variant="contained"
+          disabled={loading}
         >
           تایید
         </Button>

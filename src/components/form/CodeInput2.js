@@ -7,12 +7,11 @@ const CodeInput2 = ({ value, onChange, error, helperText }) => {
     value[idx] ? value[idx] : ""
   );
 
-  console.log(valueArray);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
     onChange(
-      [...valueArray.map((element, idx) => (idx === index ? element.value : element))].join(
+      [...valueArray.map((e, idx) => (idx === index ? element.value : e))].join(
         ""
       )
     );
