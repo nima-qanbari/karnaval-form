@@ -26,7 +26,6 @@ const number = /^[0-9]*$/;
 
 const Step2 = ({ onSubmit }) => {
   const [codeValue, setCodeValue] = useState("");
-  console.log(codeValue);
   const [error, setError] = useState(null);
   const classes = useStyles();
 
