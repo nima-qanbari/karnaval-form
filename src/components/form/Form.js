@@ -5,7 +5,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 
-const Form = ({ onSubmit1, onSubmit2, onTimeOut }) => {
+const Form = ({ onSubmit1, onSubmit2, onTimeOut, onSuccess }) => {
   const [mobile, setMobile] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -32,8 +32,10 @@ const Form = ({ onSubmit1, onSubmit2, onTimeOut }) => {
       const member = await onSubmit2(mobile, code);
       console.log(member);
       setError(null);
-      if (!member.name || member.family) {
+      if (!member.name || !member.family) {
         setStep((prevState) => prevState + 1);
+      } else {
+        onSuccess()
       }
     } catch (error) {
       setError(error.message);

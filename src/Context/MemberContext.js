@@ -37,7 +37,7 @@ const MemberContextProvider = ({children}) => {
 
     },[])
   return (
-    <MemberContext.Provider value={{member, loading}}>
+    <MemberContext.Provider value={{member, setMember ,loading}}>
         {children}
     </MemberContext.Provider>
   )

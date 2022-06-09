@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
+import { useLogout } from '../../Hooks/useLogout';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -12,6 +14,14 @@ const useStyles = makeStyles({
 
 const Dashboard = () => {
     const classes = useStyles();
+    const navigate = useNavigate()
+    const logout = useLogout()
+
+    const clickHandler = () => {
+        logout()
+        navigate("/")
+        
+    }
 
     return (
       <Card className={classes.root}>
@@ -20,6 +30,7 @@ const Dashboard = () => {
               خوش آمدید
             </Typography>
           </CardContent>
+          <Button onClick={clickHandler}>خروج</Button>
       </Card>
     )
 }
