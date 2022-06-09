@@ -65,6 +65,7 @@ const ApiConnector = () => {
     );
  
     localStorage.setItem("token",response.data.loginByPhoneVerification.accessToken);
+    return response.data.loginByPhoneVerification.member
   };
 
   return (
