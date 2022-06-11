@@ -31,9 +31,6 @@ const Step2 = ({ onSubmit, onTimeOut, error: propErrors, loading }) => {
 
   const classes = useStyles();
 
-  // const onchangeHandler = (e) => {
-  //   setCodeValue(e);
-  // };
 
   const clickHandler = (e) => {
     e.preventDefault();

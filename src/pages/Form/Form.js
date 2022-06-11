@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
+import Step1 from "../../components/steps/Step1";
+import Step2 from "../../components/steps/Step2";
+import Step3 from "../../components/steps/Step3";
 
-const Form = ({ onSubmit1, onSubmit2, onTimeOut, onSuccess }) => {
+const Form = ({ onSubmit1, onSubmit2, onSubmit3, onTimeOut, onSuccess }) => {
   const [mobile, setMobile] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,6 @@ const Form = ({ onSubmit1, onSubmit2, onTimeOut, onSuccess }) => {
     try {
       setLoading(true);
       const member = await onSubmit2(mobile, code);
-      console.log(member);
       setError(null);
       if (!member.name || !member.family) {
         setStep((prevState) => prevState + 1);
@@ -43,7 +42,16 @@ const Form = ({ onSubmit1, onSubmit2, onTimeOut, onSuccess }) => {
       setLoading(false);
     }
   };
-
+  const onSubmitStep3 = async(data) => {
+    try {
+     
+      await onSubmit3(data)
+      onSuccess()
+      
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
       {step === 1 ? (
@@ -56,7 +64,7 @@ const Form = ({ onSubmit1, onSubmit2, onTimeOut, onSuccess }) => {
           loading={loading}
         />
       ) : (
-        <Step3 />
+        <Step3 onSubmit={onSubmitStep3} />
       )}
     </>
   );

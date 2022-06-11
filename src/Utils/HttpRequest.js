@@ -17,7 +17,6 @@ const httpRequest = async (query, variables) => {
 
     //interceptor
     axios.interceptors.request.use(function (config) {
-      console.log("config",config);
       const token = localStorage.getItem("token")
       if(token) {
         config.headers.Authorization = `Bearer ${token}`

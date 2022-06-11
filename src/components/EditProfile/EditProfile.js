@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
 import { Button, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@material-ui/styles';
+import { useMember } from "../../Hooks/useMember";
+import { onSubmit3 } from "../../Utils/onSubmit";
+import { useOnSuccess } from "../../Hooks/useOnSuccess";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Step3 = () => {
+const EditProfile = () => {
+  const onSuccess = useOnSuccess()
+ 
+  const [member, ,] = useMember();
   const [data, setData] = useState({
-    name: "",
-    lastName: "",
+    name: `${member.name}`,
+    family: `${member.family}`,
   });
-
   const classes = useStyles();
 
   const onchangeHandler = (e) => {
@@ -33,8 +37,11 @@ const Step3 = () => {
     setData({ ...data, [name]: value });
   };
 
+
   const clickHandler = (e) => {
     e.preventDefault();
+    onSubmit3(data);
+    onSuccess()
   };
   return (
     <div>
@@ -50,8 +57,8 @@ const Step3 = () => {
           className={classes.field}
         />
         <TextField
-          name="lastName"
-          value={data.lastName}
+          name="family"
+          value={data.family}
           onChange={onchangeHandler}
           variant="outlined"
           label="نام خانوادگی"
@@ -64,11 +71,11 @@ const Step3 = () => {
           color="primary"
           variant="contained"
         >
-          ثبت نام
+          تایید
         </Button>
       </form>
     </div>
   );
 };
 
-export default Step3;
+export default EditProfile;

@@ -5,8 +5,7 @@ import { useMember } from '../../Hooks/useMember';
 const CheckNotLogin = ({children}) => {
     const [member, loading] = useMember();
     const navigate = useNavigate()
-    
-    console.log(member, loading);
+    console.log(member)
     useEffect(() => {
         if(!loading && !member){
             navigate("/")

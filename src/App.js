@@ -1,11 +1,12 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 import ApiConnector from "./ApiConnector/ApiConnector";
 import CheckLogin from "./components/CheckLogin.js/CheckLogin";
 import CheckNotLogin from "./components/CheckLogin.js/CheckNotLogin";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             </CheckNotLogin>
           }
         />
+        <Route path="/dashboard/profile" element={<EditProfile />} />
       </Routes>
     </div>
   );
